@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise | Model Insights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .image-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-card h5 {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Model Insights</h1>
+        <h1>Classification Model for Plant Disease</h1>
+        <div class="row">
+            <!-- Model 1 -->
+            <div class="col-md-3 col-sm-6">
+
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model1.jpg')}}" alt="Model 1">
+                    <h5>Model 1</h5>
+                </div>
+            </div>
+            <!-- Model 2 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model2.jpg')}}" alt="Model 2">
+                    <h5>Model 2</h5>
+                </div>
+            </div>
+            <!-- Model 3 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model3.jpg')}}" alt="Model 3">
+                    <h5>Model 3</h5>
+                </div>
+            </div>
+            <!-- Model 4 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model4.jpg')}}" alt="Model 4">
+                    <h5>Model 4</h5>
+                </div>
+            </div>
+        </div>
+        <h1>Fruit Prediction Model</h1><br>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model5.jpg')}}" alt="Model 4">
+                    <h5>Model 5</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model6.jpg')}}" alt="Model 4">
+                    <h5>Model 6</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{url_for('static',filename='img/model7.jpg')}}" alt="Model 4">
+                    <h5>Model 7</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="image-card">
+                    <img src="{{ url_for('static',filename='img/model8.jpg') }}" alt="Model 4">
+                    <h5>Model 8</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: url('static/img/bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .btn-custom {
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 30px;
+            width: 100%;
+            margin: 10px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your Option</h1>
+        <button type="button" class="btn btn-primary btn-custom" onclick="moveToNextPage('n')">Crop Based Nutrition</button>
+        <button type="button" class="btn btn-success btn-custom" onclick="moveToNextPage('f')">Fruits and Vegetables</button>
+        <button type="button" class="btn btn-info btn-custom" onclick="moveToNextPage('w')">Crop Based on Weather Conditions and Nutrients</button>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function moveToNextPage(type) {
+            if (type==='n'){
+                location.href = "{{url_for('nutrition')}}";
+            }
+            if (type==='f'){
+                location.href = "{{url_for('fruits')}}";
+            }
+            if (type==='w'){
+                location.href = "{{url_for('weather')}}";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise | Weather Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('static/img/weather.jpg') no-repeat center center fixed;
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .btn-custom {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            border: 1px solid #007bff;
+            max-width: 600px;
+            height: 200px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Weather Data Form</h1>
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="N">Nitrogen (N):</label>
+                <input type="number" class="form-control" id="N" name="N" placeholder="Enter nitrogen level" required>
+            </div>
+            <div class="form-group">
+                <label for="P">Phosphorous (P):</label>
+                <input type="number" class="form-control" id="P" name="P" placeholder="Enter phosphorous level"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="K">Potassium (K):</label>
+                <input type="number" class="form-control" id="K" name="K" placeholder="Enter potassium level" required>
+            </div>
+            <div class="form-group">
+                <label for="pH">pH Level:</label>
+                <input type="text" step="0.01" class="form-control" id="pH" name="pH" placeholder="Enter pH level"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="temp">Temperature (°C):</label>
+                <input type="text" class="form-control" id="temp" name="temp" placeholder="Enter temperature" required>
+            </div>
+            <div class="form-group">
+                <label for="humidity">Humidity (%):</label>
+                <input type="text" class="form-control" id="humidity" name="humidity" placeholder="Enter humidity"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="rainfall">Rainfall (mm):</label>
+                <input type="text" class="form-control" id="rainfall" name="rainfall"
+                    placeholder="Enter rainfall amount" required>
+            </div>
+
+            <button type="submit" class="btn btn-custom">Predict</button>
+        </form>
+    </div>
+
+    <div id="output">
+        Output
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#predictionForm').on('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                console.log("Form submitted!"); // Debugging line
+
+                $.ajax({
+                    url: '/predict/weather',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        var data = response.data[0][0][0]; // Access the first layer of nested arrays
+                        const time = `Time: ${response.time} Months\n`;
+                        var formattedOutput = time;
+
+                        // Iterate over the data to format the output
+                        for (var i = 0; i < data.length; i++) {
+                            formattedOutput += `Crop: ${data[i].weather_crop}\n`;
+                        }
+
+                        $('#output').html('<pre>' + formattedOutput + '</pre>'); // Using <pre> to preserve formatting
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error:", error); // Debugging line
+                        $('#output').html('<div class="alert alert-danger">Error: ' + error + '</div>');
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise | Fruits and Vegetables</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('static/img/fruits.jpg') no-repeat center center fixed;
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .btn-custom {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+
+        #output {
+            border: 1px solid #007bff;
+            max-width: 600px;
+            height: 200px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Fruits and Vegetables</h1>
+        <form id="predictionForm">
+
+            <div class="form-group">
+                <label for="N">Nitrogen (N):</label>
+                <input type="number" class="form-control" id="N" name="N" placeholder="Enter nitrogen level" required>
+            </div>
+            <div class="form-group">
+                <label for="P">Phosphorous (P):</label>
+                <input type="number" class="form-control" id="P" name="P" placeholder="Enter phosphorous level"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="K">Potassium (K):</label>
+                <input type="number" class="form-control" id="K" name="K" placeholder="Enter potassium level" required>
+            </div>
+            <div class="form-group">
+                <label for="pH">pH Level:</label>
+                <input type="text" step="0.01" class="form-control" id="pH" name="pH" placeholder="Enter pH level"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="EC">Electrical Conductivity (EC):</label>
+                <input type="text" class="form-control" id="EC" name="EC" placeholder="Enter EC value" required>
+            </div>
+            <div class="form-group">
+                <label for="S">Sulfur (S):</label>
+                <input type="text" class="form-control" id="S" name="S" placeholder="Enter sulfur level" required>
+            </div>
+            <div class="form-group">
+                <label for="Cu">Copper (Cu):</label>
+                <input type="text" class="form-control" id="Cu" name="Cu" placeholder="Enter copper level" required>
+            </div>
+            <div class="form-group">
+                <label for="Fe">Iron (Fe):</label>
+                <input type="text" class="form-control" id="Fe" name="Fe" placeholder="Enter iron level" required>
+            </div>
+            <div class="form-group">
+                <label for="Mn">Manganese (Mn):</label>
+                <input type="text" class="form-control" id="Mn" name="Mn" placeholder="Enter manganese level" required>
+            </div>
+            <div class="form-group">
+                <label for="B">Boron (B):</label>
+                <input type="text" class="form-control" id="B" name="B" placeholder="Enter boron level" required>
+            </div>
+            <div class="form-group">
+                <label for="Zn">Zinc (Zn):</label>
+                <input type="text" class="form-control" id="Zn" name="Zn" placeholder="Enter zinc level" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Predict</button>
+        </form>
+    </div>
+
+    <div id="output">
+        Output
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#predictionForm').on('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                console.log("Form submitted!"); // Debugging line
+
+                $.ajax({
+                    url: '/predict/fruits',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        var data = response.data[0]; // Access the first layer of nested arrays
+                        const time = `Time: ${response.time} Months\n`;
+                        var formattedOutput = time;
+    
+                        // Iterate over the data to format the output
+                        for (var i = 0; i < data.length; i++) {
+                            formattedOutput += `Crop: ${data[i].fruit}\n`;
+                        }
+    
+                        $('#output').html('<pre>' + formattedOutput + '</pre>'); // Using <pre> to preserve formatting
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error:", error); // Debugging line
+                        $('#output').html('<div class="alert alert-danger">Error: ' + error + '</div>');
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

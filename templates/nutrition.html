@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise | Nutrient Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('static/img/nutrients.jpg') no-repeat center center fixed;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .card {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .form-container {
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333333;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #555555;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #cccccc;
+            padding: 12px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-custom:active {
+            background-color: #004080;
+            transform: translateY(0);
+        }
+
+        #output {
+            border: 1px solid #007bff;
+            max-width: 600px;
+            height: 200px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        #soilColor {
+            border-radius: 8px;
+            border: 1px solid #cccccc;
+            padding: 12px;
+            height: auto;
+            font-size: 14px;
+            color: #333333;
+            background-color: #ffffff;
+            appearance: none;
+            /* Hides the default arrow in some browsers */
+            -webkit-appearance: none;
+            /* Hides the default arrow in Safari */
+            -moz-appearance: none;
+            /* Hides the default arrow in Firefox */
+            background-image: url('data:image/svg+xml;base64,...');
+            /* Custom dropdown arrow */
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 12px;
+        }
+
+        #soilColor:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+            /* Removes the default outline */
+        }
+
+        #soilColor option {
+            color: #333333;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Bootstrap Card Component -->
+        <div class="card">
+            <div class="card-header">
+                Important Information
+            </div>
+            <div class="card-body">
+                <p>Please ensure that the soil sample is from a representative area of your field. The data you provide
+                    will help us predict the optimal nutrient levels for your crops.</p>
+                <p>Make sure to input accurate values for the best prediction results.</p>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h1>Nutrient Prediction</h1>
+            <form id="predictionForm">
+                <div class="form-group">
+                    <label for="soilColor">Soil Color:</label>
+                    <select class="form-control" id="soilColor" name="soilColor" required>
+                        <option value="" disbaled selected>Select soil color</option>
+                        <option value="Black">Black Soil</option>
+                        <option value="Red">Red Soil</option>
+                        <option value="Medium Brown">Medium Brown</option>
+                        <option value="Dark Brown">Dark Brown</option>
+                        <option value="Light Brown">Light Brown</option>
+                        <option value="Reddish Brown">Reddish Brown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="nitrogen">Nitrogen:</label>
+                    <input type="number" step="any" class="form-control" id="nitrogen" name="nitrogen"
+                        placeholder="Enter nitrogen level" required>
+                </div>
+                <div class="form-group">
+                    <label for="phosphorous">Phosphorous:</label>
+                    <input type="number" step="any" class="form-control" id="phosphorous" name="phosphorous"
+                        placeholder="Enter phosphorous level" required>
+                </div>
+                <div class="form-group">
+                    <label for="potassium">Potassium:</label>
+                    <input type="number" step="any" class="form-control" id="potassium" name="potassium"
+                        placeholder="Enter potassium level" required>
+                </div>
+                <div class="form-group">
+                    <label for="pH">pH Level:</label>
+                    <input type="text" step="0.01" class="form-control" id="pH" name="pH" placeholder="Enter pH level"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="rainfall">Rainfall (mm):</label>
+                    <input type="text" step="any" class="form-control" id="rainfall" name="rainfall"
+                        placeholder="Enter rainfall amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="temperature">Temperature (°C):</label>
+                    <input type="text" step="any" class="form-control" id="temperature" name="temperature"
+                        placeholder="Enter temperature" required>
+                </div>
+                <button type="submit" class="btn btn-custom">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="output">
+        Output
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#predictionForm').on('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+    
+                $.ajax({
+                    url: '/predict/nutrition',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        var data = response.data[0][0][0]; // Access the first layer of nested arrays
+                        const time = `Time: ${response.time} Months\n`;
+                        var formattedOutput = time;
+    
+                        // Iterate over the data to format the output
+                        for (var i = 0; i < data.length; i++) {
+                            const crop = data[i].crop; // Get the crop name
+                            const fertilizers = data[i].fertilizer.join(', '); // Get the fertilizers
+                            formattedOutput += `Crop: ${crop}\nFertilizers: ${fertilizers}\n\n`;
+                        }
+    
+                        $('#output').html('<pre>' + formattedOutput + '</pre>'); // Using <pre> to preserve formatting
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error:", error); // Debugging line
+                        $('#output').html('<div class="alert alert-danger">Error: ' + error + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farm-wise</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f6f5f8;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #a26c93 !important;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-nav .nav-link {
+            color: #a26c93 !important;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d4a4b3 !important;
+        }
+
+        .hero {
+            background: url('static/img/img1.jpeg') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .hero a.btn-primary-custom {
+            z-index: 2;
+            position: relative;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section.bg-light {
+            background-color: #f9f9f9;
+        }
+
+        .btn-primary-custom {
+            background-color: #d4a4b3;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            color: #fff;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #b78c9f;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #a26c93;
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .contact-form .form-control {
+            border-radius: 30px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contact-form .btn-primary-custom {
+            width: 100%;
+            border-radius: 30px;
+        }
+
+        .intro-text {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 30px auto;
+            width: 1100px;
+            height: 300px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .intro-text strong {
+            color: #701155;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">farm-wise</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>farm-wise</h1>
+            <p>Welcome to farm-wise, where cutting-edge technology meets agricultural
+                innovation. Our platform is dedicated to revolutionizing the way farming is approached by harnessing the
+                power of advanced data analytics, automation, and precision techniques.</p>
+            <a href="{{url_for('feature_screen')}}" class="btn btn-primary-custom">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="section">
+        <div class="container">
+            <div class="intro-text">
+                <p>
+                    <strong>
+                        With our state-of-the-art solutions, farmers can make more informed decisions, optimize their
+                        resources, and significantly increase crop yield. Whether you are looking to integrate automated
+                        systems for irrigation and fertilization or leverage data-driven insights for better crop
+                        management, we provide comprehensive tools to support and enhance every aspect of modern
+                        farming.
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        Explore our features and see how we can help you achieve a more productive and efficient farming
+                        operation. Embrace the future of agriculture with farm-wise and
+                        transform your farming practices for a more sustainable and successful outcome.
+                    </strong>
+                </p>
+            </div>
+            <br><br><br>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <a href="{{url_for('detection_screen')}}">
+                        <div class="card">
+                            <img src="{{ url_for('static',filename='img/automated_systems.jpg')}}" class="card-img-top"
+                                alt="Feature 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Leaf Disease Detection Systems</h5>
+                                <p class="card-text">Leaf disease detection involves identifying and diagnosing diseases
+                                    affecting plant leaves. This enables early detection, allowing for timely
+                                    intervention and treatment to maintain healthy crops and improve agricultural
+                                    yields.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col-md-4">
+                    <a href="{{url_for('model_insight')}}">
+                        <div class="card">
+                            <img src="{{ url_for('static',filename='img/datadriven.png')}}" class="card-img-top"
+                                alt="Feature 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Model Insights</h5>
+                                <p class="card-text">Leverage advanced data analytics to gain deeper insights into crop
+                                    growth patterns, disease trends, and environmental factors. By utilizing these
+                                    insights,
+                                    farmers can make more informed decisions, leading to more accurat predictions and
+                                    optimized resource management.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section bg-light">
+        <div class="container contact-form">
+            <h2 class="text-center">Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary-custom">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 farm-wise. All rights reserved.</p>
+        <p><a href="#contact">Contact Us</a> | <a href="#features">Features</a></p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS for Slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroElement = document.querySelector('.hero');
+            const images = [
+                'static/img/img3.jpeg',
+                'static/img/img2.jpeg',
+                'static/img/img1.jpeg',
+                'static/img/img4.jpeg'
+            ];
+            let currentIndex = 0;
+            const interval = 3000; // Change image every 3 seconds
+
+            function changeBackgroundImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                heroElement.style.backgroundImage = `url(${images[currentIndex]})`;
+            }
+
+            // Ensure the initial background image is set before starting the interval
+            heroElement.style.backgroundImage = `url(${images[currentIndex]})`;
+            setInterval(changeBackgroundImage, interval);
+        });
+
+    </script>
+</body>
+
+</html>
